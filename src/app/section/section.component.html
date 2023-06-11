@@ -1,0 +1,12 @@
+<div
+  class="p-6 h-screen"
+  [class.bg-slate-100]="!isWhiteBackground"
+  [class.bg-white]="isWhiteBackground"
+>
+  <h1
+    class="font-[Righteous] text-center text-[38px] tracking-wider text-slate-800 font-semibold mb-10"
+  >
+    {{ title }}
+  </h1>
+  <ng-content></ng-content>
+</div>
