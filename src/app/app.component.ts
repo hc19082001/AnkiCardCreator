@@ -1,5 +1,5 @@
 import { Component, ViewChild, ViewChildren } from '@angular/core';
-import { words2 } from 'src/data';
+import { words2, examples } from 'src/data';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +8,20 @@ import { words2 } from 'src/data';
 })
 export class AppComponent {
   title = 'AnkiCardCreator';
+  // Meaning properties
   data = words2;
   currentWord? = words2[0];
-
   finalViMeaning = '';
   finalEnMeaning = '';
 
   @ViewChildren('posbtn') posbtns: any;
   @ViewChildren('pvi') pvi: any;
   @ViewChildren('pen') pen: any;
+  // Example properties
+  examples = examples;
+  finalExample = '';
+
+  @ViewChildren('example') example: any;
 
   ngAfterViewInit(): void {
     // Set default button
@@ -48,6 +53,11 @@ export class AppComponent {
   }
 
   enMeansClick(means: string, event: any) {
+    if (this.finalEnMeaning === means) {
+      this.finalEnMeaning = '';
+      event.target.classList.remove('bg-slate-500', 'text-white');
+      return;
+    }
     this.finalEnMeaning = means;
     event.target.classList.add('bg-slate-500', 'text-white');
     this.pen._results.forEach((p: any) => {
@@ -61,6 +71,11 @@ export class AppComponent {
   }
 
   viMeansClick(means: string, event: any) {
+    if (this.finalViMeaning === means) {
+      this.finalViMeaning = '';
+      event.target.classList.remove('bg-slate-500', 'text-white');
+      return;
+    }
     this.finalViMeaning = means;
     event.target.classList.add('bg-slate-500', 'text-white');
     this.pvi._results.forEach((p: any) => {
@@ -71,5 +86,25 @@ export class AppComponent {
         p.nativeElement.classList.remove('bg-slate-500', 'text-white');
       }
     });
+  }
+
+  exampleClick(en: string, event: any) {
+    if (this.finalExample === en) {
+      this.finalExample = '';
+      event.target.classList.remove('bg-slate-500', 'text-white');
+      console.log(this.finalExample);
+      return;
+    }
+    this.finalExample = en;
+    console.log(this.finalExample);
+    this.example._results.forEach((li: any) => {
+      if (
+        !li.nativeElement.contains(event.target) &&
+        li.nativeElement.classList.contains('bg-slate-500', 'text-white')
+      ) {
+        li.nativeElement.classList.remove('bg-slate-500', 'text-white');
+      }
+    });
+    event.target.classList.add('bg-slate-500', 'text-white');
   }
 }

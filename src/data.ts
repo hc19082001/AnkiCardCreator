@@ -71,3 +71,46 @@ export const words2 = [
     ],
   },
 ];
+
+export const examples = [
+  {
+    en: 'Hello, how are you today?',
+    vi: 'Xin chào, bạn khỏe không?',
+  },
+  {
+    en: 'I am fine, thank you.',
+    vi: 'Tôi khỏe, cảm ơn bạn.',
+  },
+  {
+    en: 'What is your name?',
+    vi: 'Bạn tên là gì?',
+  },
+  {
+    en: 'My name is John.',
+    vi: 'Tôi tên là John.',
+  },
+  {
+    en: 'Hello, how are you today?',
+    vi: 'Xin chào, bạn khỏe không?',
+  },
+  {
+    en: 'I am fine, thank you.',
+    vi: 'Tôi khỏe, cảm ơn bạn.',
+  },
+  {
+    en: 'What is your name?',
+    vi: 'Bạn tên là gì?',
+  },
+  {
+    en: 'My name is John.',
+    vi: 'Tôi tên là John.',
+  },
+  {
+    en: 'My name is John.',
+    vi: 'Tôi tên là John.',
+  },
+  {
+    en: 'My name is John.',
+    vi: 'Tôi tên là John.',
+  },
+];

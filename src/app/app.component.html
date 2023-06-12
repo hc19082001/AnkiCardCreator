@@ -1,6 +1,6 @@
 <app-search></app-search>
 <div>
-  <app-section [isWhiteBackground]="true" title="CHOOSE IMAGE">
+  <app-section [isWhiteBackground]="true" title="SET IMAGE">
     <div class="flex flex-col justify-center items-center">
       <div
         class="w-[400px] p-1 border border-solid border-slate-300 rounded-md flex justify-center items-center bg-white mb-3"
@@ -8,7 +8,7 @@
         <input
           type="url"
           class="text-[16px] outline-none text-center flex-grow p-2"
-          placeholder="Or enter image url ...."
+          placeholder="Paste your image url here ...."
         />
       </div>
       <div class="w-auto h-[420px] relative">
@@ -17,12 +17,6 @@
           alt=""
           class="rounded-lg object-contain w-full h-full"
         />
-        <i
-          class="bx bx-left-arrow-alt absolute text-5xl -left-16 top-1/2 -translate-y-1/2 hover:-translate-x-1 active:scale-110 transition-all duration-300 cursor-pointer"
-        ></i>
-        <i
-          class="bx bx-right-arrow-alt absolute text-5xl -right-16 top-1/2 -translate-y-1/2 hover:translate-x-1 active:scale-110 transition-all duration-300 cursor-pointer"
-        ></i>
       </div>
     </div>
   </app-section>
@@ -136,7 +130,7 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex gap-2 justify-center items-center">
         <div
           class="w-[600px] p-1 border border-solid border-slate-400 rounded-md flex justify-center items-center bg-white mb-3"
         >
@@ -155,6 +149,28 @@
             placeholder="Or your vietnamese means ...."
           />
         </div>
+      </div>
+    </div>
+  </app-section>
+  <app-section [isWhiteBackground]="true" title="CHOOSE EXPAMPLE">
+    <ul *ngFor="let ex of examples; let i = index">
+      <li
+        #example
+        class="p-5 hover:bg-slate-200 hover:cursor-pointer mb-2 rounded"
+        (click)="exampleClick(ex.en, $event)"
+      >
+        {{ i + 1 }}. {{ ex.en }} ({{ ex.vi }})
+      </li>
+    </ul>
+    <div class="flex justify-center">
+      <div
+        class="w-full p-1 border border-solid border-slate-400 rounded-md flex justify-center items-center bg-white mb-3"
+      >
+        <input
+          type="text"
+          class="text-[16px] outline-none text-center flex-grow p-2"
+          placeholder="Or your example...."
+        />
       </div>
     </div>
   </app-section>
