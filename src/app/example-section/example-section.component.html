@@ -1,0 +1,22 @@
+<app-section [isWhiteBackground]="true" title="CHOOSE EXPAMPLE">
+  <ul *ngFor="let ex of examples; let i = index">
+    <li
+      #example
+      class="p-5 hover:bg-slate-200 hover:cursor-pointer mb-2 rounded"
+      (click)="exampleClick(ex.en, $event)"
+    >
+      {{ i + 1 }}. {{ ex.en }} ({{ ex.vi }})
+    </li>
+  </ul>
+  <div class="flex justify-center">
+    <div
+      class="w-full p-1 border border-solid border-slate-400 rounded-md flex justify-center items-center bg-white mb-3"
+    >
+      <input
+        type="text"
+        class="text-[16px] outline-none text-center flex-grow p-2"
+        placeholder="Or your example...."
+      />
+    </div>
+  </div>
+</app-section>

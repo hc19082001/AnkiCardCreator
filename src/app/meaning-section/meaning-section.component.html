@@ -1,0 +1,143 @@
+<app-section title="CHOOSE MEANINGS">
+  <div class="flex gap-4 mb-4">
+    <ng-container *ngFor="let item of data">
+      <ng-container
+        *ngIf="item.type === 1"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Noun 🚀',
+          dt: 1
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 2"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Verb 👋',
+          dt: 2
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 3"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Adjective ️🎨',
+          dt: 3
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 4"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Adverb ♨️',
+          dt: 4
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 5"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Preposition 📚',
+          dt: 5
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 6"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Conjunction 🔗',
+          dt: 6
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 7"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Interjection ⚜️',
+          dt: 7
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 8"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Determiners 🛡',
+          dt: 8
+        }"
+      ></ng-container>
+      <ng-container
+        *ngIf="item.type === 9"
+        [ngTemplateOutlet]="typebtn"
+        [ngTemplateOutletContext]="{
+          text: 'Other 🔬',
+          dt: 9
+        }"
+      ></ng-container>
+    </ng-container>
+  </div>
+  <div class="text-center">
+    <div class="cursor-pointer max-h-[380px] overflow-auto mb-4">
+      <div class="grid grid-cols-2 gap-2">
+        <div>
+          <ng-container *ngFor="let en of currentWord?.en; let e = even">
+            <p
+              #pen
+              class="p-5"
+              (click)="enMeansClick(en, $event)"
+              [class.bg-slate-200]="e"
+              [class.bg-slate-500]="en === finalEnMeaning"
+              [class.text-white]="en === finalEnMeaning"
+            >
+              {{ en }}
+            </p>
+          </ng-container>
+        </div>
+        <div>
+          <ng-container *ngFor="let vi of currentWord?.vi; let e = even">
+            <p
+              #pvi
+              class="p-5"
+              (click)="viMeansClick(vi, $event)"
+              [class.bg-slate-200]="e"
+              [class.bg-slate-500]="vi === finalViMeaning"
+              [class.text-white]="vi === finalViMeaning"
+            >
+              {{ vi }}
+            </p>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="flex gap-2 justify-center items-center">
+      <div
+        class="w-[600px] p-1 border border-solid border-slate-400 rounded-md flex justify-center items-center bg-white mb-3"
+      >
+        <input
+          type="text"
+          class="text-[16px] outline-none text-center flex-grow p-2"
+          placeholder="Or your english means ...."
+        />
+      </div>
+      <div
+        class="w-[600px] p-1 border border-solid border-slate-400 rounded-md flex justify-center items-center bg-white mb-3"
+      >
+        <input
+          type="text"
+          class="text-[16px] outline-none text-center flex-grow p-2"
+          placeholder="Or your vietnamese means ...."
+        />
+      </div>
+    </div>
+  </div>
+</app-section>
+
+<ng-template #typebtn let-content="text" let-type="dt">
+  <button
+    #posbtn
+    attr.data-pos="{{ type }}"
+    class="bg-transparent hover:bg-slate-500 text-slate-700 font-semibold hover:text-white py-2 px-4 border border-slate-500 hover:border-transparent transition-all duration-200 rounded"
+    (click)="onPosBtnClick(type, $event)"
+  >
+    {{ content }}
+  </button>
+</ng-template>
