@@ -114,3 +114,27 @@ export const examples = [
     vi: 'Tôi tên là John.',
   },
 ];
+
+export const synonyms = [
+  'test',
+  'match',
+  'trial',
+  'examination',
+  'experiment',
+  'assessment',
+  'evaluation',
+  'investigation',
+  'inspection',
+  'check',
+  'testing',
+  'trial',
+  'experiment',
+  'examination',
+  'evaluation',
+  'assessment',
+  'appraisal',
+  'investigation',
+  'inspection',
+  'analysis',
+  'study',
+];

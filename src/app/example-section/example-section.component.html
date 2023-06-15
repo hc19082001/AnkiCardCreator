@@ -1,8 +1,9 @@
 <app-section [isWhiteBackground]="true" title="CHOOSE EXPAMPLE">
-  <ul *ngFor="let ex of examples; let i = index">
+  <ul class="grid grid-cols-2">
     <li
+      *ngFor="let ex of examples; let i = index"
       #example
-      class="p-5 hover:bg-slate-200 hover:cursor-pointer mb-2 rounded"
+      class="p-5 hover:bg-slate-200 block hover:cursor-pointer mb-2 rounded"
       (click)="exampleClick(ex.en, $event)"
     >
       {{ i + 1 }}. {{ ex.en }} ({{ ex.vi }})
