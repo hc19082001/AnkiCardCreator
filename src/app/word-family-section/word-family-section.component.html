@@ -1,12 +1,12 @@
-<app-section [isWhiteBackground]="true" title="CHOOSE EXPAMPLE">
+<app-section [isWhiteBackground]="true" title="CHOOSE WORD-FAMILY">
   <ul class="grid grid-cols-2">
     <li
-      *ngFor="let ex of examples; let i = index"
-      #example
+      *ngFor="let wf of data; let i = index"
+      #wordFamily
       class="p-5 hover:bg-slate-200 block hover:cursor-pointer mb-2 rounded"
-      (click)="exampleClick(ex.en, $event)"
+      (click)="wordFamilyClick(wf, $event)"
     >
-      {{ i + 1 }}. {{ ex.en }} ({{ ex.vi }})
+      {{ wf }}
     </li>
   </ul>
   <div class="flex justify-center">
@@ -16,8 +16,8 @@
       <input
         type="text"
         class="text-[16px] outline-none text-center flex-grow p-2"
-        placeholder="Or your example...."
-        [(ngModel)]="finalExample"
+        placeholder="Your word-family"
+        [(ngModel)]="finalWordFamily"
       />
     </div>
   </div>

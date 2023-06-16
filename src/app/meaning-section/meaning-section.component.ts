@@ -10,6 +10,7 @@ export class MeaningSectionComponent implements AfterViewInit {
   // Meaning properties
   data = words2;
   currentWord? = words2[0];
+
   finalViMeaning = '';
   finalEnMeaning = '';
 

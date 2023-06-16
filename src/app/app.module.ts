@@ -9,10 +9,21 @@ import { ImageSectionComponent } from './image-section/image-section.component';
 import { MeaningSectionComponent } from './meaning-section/meaning-section.component';
 import { ExampleSectionComponent } from './example-section/example-section.component';
 import { SynonymSectionComponent } from './synonym-section/synonym-section.component';
+import { WordFamilySectionComponent } from './word-family-section/word-family-section.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, SearchComponent, SectionComponent, ImageSectionComponent, MeaningSectionComponent, ExampleSectionComponent, SynonymSectionComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    SearchComponent,
+    SectionComponent,
+    ImageSectionComponent,
+    MeaningSectionComponent,
+    ExampleSectionComponent,
+    SynonymSectionComponent,
+    WordFamilySectionComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

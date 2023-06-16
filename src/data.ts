@@ -138,3 +138,16 @@ export const synonyms = [
   'analysis',
   'study',
 ];
+
+export const word_family = [
+  'test (n) Bài kiểm tra',
+  'test (v) Kiểm tra',
+  'tester (n) Người kiểm tra',
+  'testable (adj) Có thể kiểm tra được',
+  'testability (n) Khả năng kiểm tra',
+  'test case (n) Trường hợp kiểm tra',
+  'test drive (n) Cuộc thử xe',
+  'test drive (v) Thử xe',
+  'testee (n) Người được kiểm tra',
+  'test match (n) Trận đấu thử',
+];
