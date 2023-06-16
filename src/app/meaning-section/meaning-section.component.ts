@@ -1,15 +1,21 @@
 import { Component, ViewChildren, AfterViewInit } from '@angular/core';
-import { words2 } from 'src/data';
+import { Mean, Word } from 'src/data';
+import { ApiConnectService } from '../api-connect.service';
+import { Observable, interval, map, from } from 'rxjs';
 
 @Component({
   selector: 'app-meaning-section',
   templateUrl: './meaning-section.component.html',
   styleUrls: ['./meaning-section.component.scss'],
 })
-export class MeaningSectionComponent implements AfterViewInit {
+export class MeaningSectionComponent {
   // Meaning properties
-  data = words2;
-  currentWord? = words2[0];
+  data: Mean = { ipa: '', defs: [] };
+  currentWord: { type: number; vi: string[]; en: string[] } = {
+    type: 0,
+    vi: [],
+    en: [],
+  };
 
   finalViMeaning = '';
   finalEnMeaning = '';
@@ -18,19 +24,32 @@ export class MeaningSectionComponent implements AfterViewInit {
   @ViewChildren('pvi') pvi: any;
   @ViewChildren('pen') pen: any;
 
-  ngAfterViewInit(): void {
-    // Set default button
-    this.posbtns._results[0].nativeElement.classList.remove('bg-transparent');
-    this.posbtns._results[0].nativeElement.classList.add(
-      'text-white',
-      'bg-slate-500',
-      '-translate-y-3'
-    );
+  constructor(private api: ApiConnectService) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.'
+    from(this.api.getMeanOfWord('feed')).subscribe((data) => {
+      this.data = data;
+      this.currentWord = data.defs[0];
+
+      this.posbtns._results[0]?.nativeElement.classList.remove(
+        'bg-transparent'
+      );
+      this.posbtns._results[0]?.nativeElement.classList.add(
+        'text-white',
+        'bg-slate-500',
+        '-translate-y-3'
+      );
+    });
+    // this.api.getMeanOfWord('fast').then((data) => {
+    //   this.data = data;
+    //   this.currentWord = data.defs[0];
   }
 
   onPosBtnClick(type: number, z: any) {
     // Change the current word
-    this.currentWord = this.data.find((word) => word.type === type)!;
+    this.currentWord = this.data.defs.find((word) => word.type === type)!;
     // Reset all buttons to default except the one clicked
     this.posbtns._results.forEach((btn: any) => {
       if (btn.nativeElement.dataset.pos !== type) {

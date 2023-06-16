@@ -11,6 +11,8 @@ import { ExampleSectionComponent } from './example-section/example-section.compo
 import { SynonymSectionComponent } from './synonym-section/synonym-section.component';
 import { WordFamilySectionComponent } from './word-family-section/word-family-section.component';
 import { FormsModule } from '@angular/forms';
+import { TestObservableComponent } from './test-observable/test-observable.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { FormsModule } from '@angular/forms';
     ExampleSectionComponent,
     SynonymSectionComponent,
     WordFamilySectionComponent,
+    TestObservableComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

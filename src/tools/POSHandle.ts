@@ -1,4 +1,4 @@
-const getType = (text: string) => {
+export const getType = (text: string) => {
   let type = 10;
   const textCut = text?.trim().toLocaleLowerCase();
   if (textCut.includes('danh từ') || textCut.includes('noun')) {
@@ -31,7 +31,7 @@ const getType = (text: string) => {
   return type;
 };
 
-const getTypeReverse = (number: number) => {
+export const getTypeReverse = (number: number) => {
   let type = '...';
   if (number === 1) {
     type = 'n';

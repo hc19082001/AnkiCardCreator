@@ -1,6 +1,6 @@
 <app-section title="CHOOSE MEANINGS">
   <div class="flex gap-4 mb-4">
-    <ng-container *ngFor="let item of data">
+    <ng-container *ngFor="let item of data.defs">
       <ng-container
         *ngIf="item.type === 1"
         [ngTemplateOutlet]="typebtn"
