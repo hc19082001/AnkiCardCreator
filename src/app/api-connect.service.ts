@@ -4,7 +4,7 @@ import {
   mergeAttributeen,
   mergeAttributevi,
 } from '../tools/MeansHandle';
-import { getType } from 'src/tools/POSHandle';
+import { getType, getTypeReverse } from 'src/tools/POSHandle';
 @Injectable({
   providedIn: 'root',
 })
@@ -191,5 +191,71 @@ export class ApiConnectService {
     };
     console.log(mergeAndAddnewAttribute(eng_obj.defs, vi_mean.defs));
     return merge_en_vn;
+  }
+
+  //~ SYNONYMS
+  async getSynonym(word: string) {
+    let arrSynonyms: any = [];
+    const fData = await fetch(
+      `https://dict.laban.vn/find?type=1&query=${word}`
+    );
+    const textData = await fData.text();
+    const laban_container = document.querySelector('.laban-synonym');
+    laban_container!.innerHTML = textData;
+    laban_container!
+      .querySelectorAll('script')
+      .forEach((item) => item.remove());
+    laban_container!.querySelectorAll('link').forEach((item) => item.remove());
+    const a = laban_container!.querySelector(
+      '#content_selectable.slide-content .slide_img li:last-child #content_selectable.content'
+    );
+    if (a) {
+      const synonyms = a.querySelectorAll('.color-light-blue.margin25.m-top15');
+      synonyms.forEach((item: any) => {
+        item.innerText.trim().length <= 15 &&
+          arrSynonyms.push(item.innerText.trim());
+      });
+      return arrSynonyms;
+    } else {
+      return [];
+    }
+  }
+
+  //~ WORD-FAMILY
+  async getWordFamily(word: string) {
+    const firstData = await fetch(
+      `https://dictionary.cambridge.org/vi/dictionary/english/${word}`
+    );
+    const textData = await firstData.text();
+    const cambridge_container = document.querySelector('#cambride');
+    cambridge_container!.innerHTML = textData;
+    const a = cambridge_container!.querySelector(
+      '#page-content.hfl-s.lt2b.lmt-10.lmb-25.lp-s_r-20.x.han.tc-bd.lmt-20.english'
+    );
+    const b = a!.querySelector('#ad_btmslot');
+    const c = b!.previousElementSibling;
+    const d = c!.querySelector('.hax.lp-10.lb.lb-cm.lbt0.dbrowse');
+    const finalDataHTML = d!.querySelectorAll('.lmb-12');
+    const finalData: any = [];
+    const listPosOfWord: any = [];
+    finalDataHTML.forEach((item: any) => {
+      if (item.innerText.trim() !== word) {
+        finalData.push(item.innerText.trim());
+        const dataOfThisWord = this.getMeanOfWordVNese(item.innerText.trim());
+        listPosOfWord.push(dataOfThisWord);
+      }
+    });
+    return Promise.all(listPosOfWord).then((res) => {
+      const result: any = [];
+      res.forEach((item, index) => {
+        if (item.defs.length > 0) {
+          result.push(
+            finalData[index] +
+              ` (${getTypeReverse(item.defs[0].type)})  ${item.defs[0].vi}`
+          );
+        }
+      });
+      return result;
+    });
   }
 }

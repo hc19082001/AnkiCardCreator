@@ -1,5 +1,7 @@
 import { Component, ViewChildren } from '@angular/core';
 import { synonyms } from 'src/data';
+import { from } from 'rxjs';
+import { ApiConnectService } from '../api-connect.service';
 
 @Component({
   selector: 'app-synonym-section',
@@ -7,10 +9,20 @@ import { synonyms } from 'src/data';
   styleUrls: ['./synonym-section.component.scss'],
 })
 export class SynonymSectionComponent {
-  data: string[] = synonyms;
+  data: string[] = [];
 
   finalSynonyms: string[] = [];
   finalSynonymString: string = '';
+
+  constructor(private api: ApiConnectService) {}
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    from(this.api.getSynonym('develop')).subscribe((res) => {
+      this.data = res;
+    });
+  }
 
   synonymClick(synonym: string) {
     this.finalSynonyms.find((item) => item === synonym)
