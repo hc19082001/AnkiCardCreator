@@ -9,7 +9,8 @@ import { from } from 'rxjs';
 })
 export class WordFamilySectionComponent {
   data: string[] = [];
-  finalWordFamily = '';
+  finalWordFamily: string[] = [];
+  finalWordFamilyString: string = '';
 
   @ViewChildren('wordFamily') wordFamily: any;
 
@@ -18,28 +19,23 @@ export class WordFamilySectionComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    from(this.api.getWordFamily('develop')).subscribe((res) => {
+    from(this.api.getWordFamily('lovely')).subscribe((res) => {
       this.data = res;
     });
   }
 
-  wordFamilyClick(wf: string, event: any) {
-    if (this.finalWordFamily === wf) {
-      this.finalWordFamily = '';
-      event.target.classList.remove('bg-slate-500', 'text-white');
-      console.log(this.finalWordFamily);
-      return;
-    }
-    this.finalWordFamily = wf;
+  wordFamilyClick(wf: string) {
+    this.finalWordFamilyString += wf + '\n';
+    this.finalWordFamily.push(wf + '. <br>');
     console.log(this.finalWordFamily);
-    this.wordFamily._results.forEach((li: any) => {
-      if (
-        !li.nativeElement.contains(event.target) &&
-        li.nativeElement.classList.contains('bg-slate-500', 'text-white')
-      ) {
-        li.nativeElement.classList.remove('bg-slate-500', 'text-white');
-      }
-    });
-    event.target.classList.add('bg-slate-500', 'text-white');
+  }
+  onWordFamilyChange(event: any) {
+    this.finalWordFamilyString = event.target.value;
+    this.finalWordFamily = event.target.value
+      .split('\n')
+      .join('. <br>@$%')
+      .split('@$%')
+      .filter((x: string) => x !== '' && x !== '. <br>');
+    console.log(this.finalWordFamily);
   }
 }
