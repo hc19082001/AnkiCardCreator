@@ -12,6 +12,7 @@ import { SynonymSectionComponent } from './synonym-section/synonym-section.compo
 import { WordFamilySectionComponent } from './word-family-section/word-family-section.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TabsMenuComponent } from './tabs-menu/tabs-menu.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     ExampleSectionComponent,
     SynonymSectionComponent,
     WordFamilySectionComponent,
+    TabsMenuComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
