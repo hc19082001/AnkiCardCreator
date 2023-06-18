@@ -1,0 +1,24 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes close {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.anmt-appear {
+  animation: appear 0.7s ease-in-out;
+}
+.anmt-close {
+  animation: close 0.7s ease-in-out;
+}

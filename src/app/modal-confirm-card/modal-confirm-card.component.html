@@ -1,0 +1,117 @@
+<app-modal [title]="'REVIEW CARD'" (close)="close.emit()">
+  <div class="flex flex-col flex-1">
+    <div class="flex-1 max-h-[470px] overflow-auto text-center mb-2">
+      <h1
+        style="
+          color: #f81d54;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 19px;
+        "
+      >
+        Offer
+      </h1>
+      <hr />
+      <span style="font-family: 'Arial'; font-size: 19px; margin-right: 20px"
+        >/Offer/</span
+      >
+
+      <hr />
+
+      <h1 style="font-family: 'Arial'; font-size: 19px; color: #f81d54">
+        (v) Đề nghị
+      </h1>
+
+      <hr />
+
+      <div class="text-center">
+        <img
+          class="max-w-[300px] inline-block"
+          src="https://vapa.vn/wp-content/uploads/2022/12/anh-canh-dep-001-1.jpg"
+          alt=""
+        />
+      </div>
+
+      <div class="syn-section">
+        <hr />
+        <div
+          style="
+            font-family: 'Arial';
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <img
+            style="width: 40px"
+            src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg"
+          />
+          <span id="synonym" style="margin-left: 10px; color: #c02929"
+            >asdad, asdadasd, asdasdad, asdasdasd, asdqaw, asdas, asdas, asdas,
+            asdas, asdas, asdas</span
+          >
+        </div>
+      </div>
+
+      <div id="fml-word-section">
+        <hr />
+        <div
+          style="
+            font-family: 'Tahoma';
+            font-size: 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+          "
+        >
+          <img
+            style="width: 50px"
+            src="https://quizizz.com/media/resource/gs/quizizz-media/quizzes/8f899e39-9177-43cb-b150-e32c7dd61e14"
+          />
+          <span style="margin-left: 20px; word-break: break-word">
+            <p style="text-align: left; color: #c02929" id="fml-word">
+              asdads (n) asdadasdsa. sdadasda (v) asdadasd. asdadasd (adj)
+              sadasdsaasd. sdadasda (v) asdadasd. asdadasd (adj) sadasdsaasd.
+              sdadasda (v) asdadasd. asdadasd (adj) sadasdsaasd
+            </p>
+          </span>
+        </div>
+      </div>
+
+      <hr />
+
+      <div
+        style="
+          font-family: 'Tahoma';
+          font-size: 20px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+        "
+      >
+        <img
+          style="
+            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+          "
+          src="https://i.pinimg.com/564x/28/f1/5a/28f15a54c83e65e70f2592f3014b7689.jpg"
+        />
+        <span style="word-break: break-word">
+          <p style="text-align: left">Ví dụ</p>
+        </span>
+      </div>
+    </div>
+    <div class="text-center">
+      <button
+        type="button"
+        class="text-white w-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-[16px] px-5 py-2.5 text-center"
+      >
+        Add this card to Anki
+      </button>
+    </div>
+  </div>
+</app-modal>

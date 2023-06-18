@@ -13,6 +13,8 @@ import { WordFamilySectionComponent } from './word-family-section/word-family-se
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TabsMenuComponent } from './tabs-menu/tabs-menu.component';
+import { ModalComponent } from './modal/modal.component';
+import { ModalConfirmCardComponent } from './modal-confirm-card/modal-confirm-card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { TabsMenuComponent } from './tabs-menu/tabs-menu.component';
     SynonymSectionComponent,
     WordFamilySectionComponent,
     TabsMenuComponent,
+    ModalComponent,
+    ModalConfirmCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
