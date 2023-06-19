@@ -29,7 +29,7 @@ export class MeaningSectionComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.'
-    from(this.api.getMeanOfWord('develop')).subscribe((data) => {
+    from(this.api.getMeanOfWord('robust')).subscribe((data) => {
       this.data = data;
       this.currentWord = data.defs[0];
 

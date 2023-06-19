@@ -19,7 +19,7 @@ export class WordFamilySectionComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    from(this.api.getWordFamily('lovely')).subscribe((res) => {
+    from(this.api.getWordFamily('robust')).subscribe((res) => {
       this.data = res;
     });
   }

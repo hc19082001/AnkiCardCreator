@@ -19,7 +19,7 @@ export class SynonymSectionComponent {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    from(this.api.getSynonym('develop')).subscribe((res) => {
+    from(this.api.getSynonymLacViet('robust')).subscribe((res) => {
       this.data = res;
     });
   }

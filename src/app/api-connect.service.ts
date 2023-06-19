@@ -194,6 +194,7 @@ export class ApiConnectService {
   }
 
   //~ SYNONYMS
+  // ! SOHA -> DEPRECATED
   async getSynonym(word: string) {
     let arrSynonyms: any = [];
     const fData = await fetch(
@@ -216,6 +217,34 @@ export class ApiConnectService {
           arrSynonyms.push(item.innerText.trim());
       });
       return arrSynonyms;
+    } else {
+      return [];
+    }
+  }
+  // !LACVIET
+  async getSynonymLacViet(word: string) {
+    const finalSynonyms: any = [];
+    const fData = await fetch(
+      `http://tratu.coviet.vn/hoc-tieng-anh/tu-dien/lac-viet/THESAURUS/${word}.html`
+    );
+    const textData = await fData.text();
+    const lacviet_synonyms = document.querySelector('#lacviet-synonym');
+    lacviet_synonyms!.innerHTML = textData;
+    lacviet_synonyms!
+      .querySelectorAll('script')
+      .forEach((item) => item.remove());
+    lacviet_synonyms!.querySelectorAll('link').forEach((item) => item.remove());
+
+    const a = lacviet_synonyms!.querySelectorAll(
+      'div[style="PADDING-BOTTOM: 4.75pt"]'
+    );
+    if (a.length > 0) {
+      a.forEach((item) => {
+        const text = item.querySelector('span')!.innerText.trim();
+        finalSynonyms.push(text);
+      });
+      console.log(finalSynonyms.join(', ').split(', '));
+      return finalSynonyms.join(', ').split(', ');
     } else {
       return [];
     }
