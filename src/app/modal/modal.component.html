@@ -4,16 +4,33 @@
   [class.anmt-close]="!isOpen"
 >
   <div
-    class="w-[630px] h-[90vh] rounded-xl bg-slate-50 px-8 py-3 flex flex-col relative"
+    class="h-[90vh] rounded-xl bg-slate-50 px-8 py-3 flex flex-col relative"
+    [class]="maxwidth"
   >
     <div
-      class="p-[10px] flex justify-between items-center border-b border-slate-400 mb-3"
+      class="mb-3"
+      [class]="{
+        'p-[10px]': title,
+        'flex': title,
+        'justify-between': title,
+        'items-center': title,
+        'border-b': title,
+        'border-slate-400': title,
+      }"
     >
-      <h1 class="text-3xl font-semibold flex-1 text-center text-pink-700">
-        {{ title }}
-      </h1>
+      <ng-container *ngIf="title">
+        <h1 class="text-3xl font-semibold flex-1 text-center text-pink-700">
+          {{ title }}
+        </h1>
+      </ng-container>
+
       <i
-        class="bx bx-x w-10 h-10 text-center text-gray-500 text-4xl bg-slate-200 rounded-full absolute right-3 top-3 hover:cursor-pointer hover:bg-slate-300 transition-all duration-200 active:scale-90"
+        class="bx bx-x w-10 h-10 text-center text-gray-500 float-right text-4xl bg-slate-200 rounded-full hover:cursor-pointer hover:bg-slate-300 transition-all duration-200 active:scale-90"
+        [class]="{
+          'absolute': title,
+          'right-3': title,
+          'top-3': title,
+        }"
         (click)="emitCLosAction()"
       ></i>
     </div>

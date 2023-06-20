@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TabsMenuComponent } from './tabs-menu/tabs-menu.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalConfirmCardComponent } from './modal-confirm-card/modal-confirm-card.component';
+import { ModalChooseImageComponent } from './modal-choose-image/modal-choose-image.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ModalConfirmCardComponent } from './modal-confirm-card/modal-confirm-ca
     TabsMenuComponent,
     ModalComponent,
     ModalConfirmCardComponent,
+    ModalChooseImageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
