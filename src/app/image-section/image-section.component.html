@@ -4,15 +4,18 @@
       class="w-[400px] p-1 border border-solid border-slate-300 rounded-md flex justify-center items-center bg-white mb-3"
     >
       <input
+        #input
         type="url"
         class="text-[16px] outline-none text-center flex-grow p-2"
         placeholder="Paste your image url here ...."
+        [(ngModel)]="imageUrl"
       />
     </div>
     <div class="w-auto h-[420px] relative mb-3">
       <img
-        src="https://vapa.vn/wp-content/uploads/2022/12/anh-avatar-cute-015.jpg"
-        alt=""
+        #img
+        [src]="imageUrl"
+        (error)="handleError()"
         class="rounded-lg object-contain w-full h-full"
       />
     </div>
@@ -31,6 +34,7 @@
   <ng-container *ngIf="isOpenChooseAnotherImagePopUp">
     <app-modal-choose-image
       (close)="handleCloseModalChooseImage()"
+      (choose)="handleChooseImage($event)"
     ></app-modal-choose-image>
   </ng-container>
 </app-section>

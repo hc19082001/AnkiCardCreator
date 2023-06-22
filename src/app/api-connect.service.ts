@@ -251,26 +251,51 @@ export class ApiConnectService {
   }
 
   //~ WORD-FAMILY
+  // async getWordFamily(word: string) {
+  //   const firstData = await fetch(
+  //     `https://dictionary.cambridge.org/vi/dictionary/english/${word}`
+  //   );
+  //   const textData = await firstData.text();
+  //   const cambridge_container = document.querySelector('#cambride');
+  //   cambridge_container!.innerHTML = textData;
+  //   const a = cambridge_container!.querySelector(
+  //     '#page-content.hfl-s.lt2b.lmt-10.lmb-25.lp-s_r-20.x.han.tc-bd.lmt-20.english'
+  //   );
+  //   const b = a!.querySelector('#ad_btmslot');
+  //   const c = b!.previousElementSibling;
+  //   const d = c!.querySelector('.hax.lp-10.lb.lb-cm.lbt0.dbrowse');
+  //   const finalDataHTML = d!.querySelectorAll('.lmb-12');
+  //   const finalData: any = [];
+  //   const listPosOfWord: any = [];
+  //   finalDataHTML.forEach((item: any) => {
+  //     if (item.innerText.trim() !== word) {
+  //       finalData.push(item.innerText.trim());
+  //       const dataOfThisWord = this.getMeanOfWordVNese(item.innerText.trim());
+  //       listPosOfWord.push(dataOfThisWord);
+  //     }
+  //   });
+  //   return Promise.all(listPosOfWord).then((res) => {
+  //     const result: any = [];
+  //     res.forEach((item, index) => {
+  //       if (item.defs.length > 0) {
+  //         result.push(
+  //           finalData[index] +
+  //             ` (${getTypeReverse(item.defs[0].type)})  ${item.defs[0].vi}`
+  //         );
+  //       }
+  //     });
+  //     return result;
+  //   });
+  // }
   async getWordFamily(word: string) {
-    const firstData = await fetch(
-      `https://dictionary.cambridge.org/vi/dictionary/english/${word}`
-    );
-    const textData = await firstData.text();
-    const cambridge_container = document.querySelector('#cambride');
-    cambridge_container!.innerHTML = textData;
-    const a = cambridge_container!.querySelector(
-      '#page-content.hfl-s.lt2b.lmt-10.lmb-25.lp-s_r-20.x.han.tc-bd.lmt-20.english'
-    );
-    const b = a!.querySelector('#ad_btmslot');
-    const c = b!.previousElementSibling;
-    const d = c!.querySelector('.hax.lp-10.lb.lb-cm.lbt0.dbrowse');
-    const finalDataHTML = d!.querySelectorAll('.lmb-12');
+    const firstData = await fetch(`http://localhost:3000/wordFamily/${word}`);
     const finalData: any = [];
     const listPosOfWord: any = [];
-    finalDataHTML.forEach((item: any) => {
-      if (item.innerText.trim() !== word) {
-        finalData.push(item.innerText.trim());
-        const dataOfThisWord = this.getMeanOfWordVNese(item.innerText.trim());
+    const data = await firstData.json();
+    data.forEach((item: any) => {
+      if (item.trim() !== word) {
+        finalData.push(item.trim());
+        const dataOfThisWord = this.getMeanOfWordVNese(item.trim());
         listPosOfWord.push(dataOfThisWord);
       }
     });
@@ -286,5 +311,46 @@ export class ApiConnectService {
       });
       return result;
     });
+  }
+
+  //~ IMAGES API
+  //https://www.google.com.vn/search?q=game%20hay%20vl&tbm=isch&hl=vi&tbs&sa=X&ved=0CAEQpwVqFwoTCKjC5OS-0f8CFQAAAAAdAAAAABAD&biw=1303&bih=681
+  // https://www.google.com.vn/search?q=game%20hay%20vl&tbm=isch&hl=vi&tbs=itp:clipart&sa=X&ved=0CAIQpwVqFwoTCKDBh-O-0f8CFQAAAAAdAAAAABAD&biw=1303&bih=681
+  // https://www.google.com.vn/search?q=game%20hay%20vl&tbm=isch&hl=vi&tbs=itp:animated&sa=X&ved=0CAQQpwVqFwoTCJDM4py_0f8CFQAAAAAdAAAAABAD&biw=1303&bih=681
+
+  async getImage(word: string, type = 1) {
+    // type: 1 -> all, 2 -> clipath, 3 -> animated
+    const firstData = await fetch(
+      `https://www.google.com.vn/search?q=${word}&tbm=isch&${
+        type === 1 ? 'tbs' : type === 2 ? 'tbs=itp:clipart' : 'tbs=itp:animated'
+      }&hl=vi&sa=X&ved=0CAQQpwVqFwoTCMD-prCLz_8CFQAAAAAdAAAAABAa&biw=1303&bih=681`
+    );
+    const textData = await firstData.text();
+    const msbing = document.querySelector('#mc-imgs');
+    msbing!.innerHTML = textData;
+    const a: any = msbing!.querySelectorAll('script[nonce]');
+    let z = '';
+    for (let i = 70; i < a.length; i++) {
+      if (a[i].innerText.startsWith('AF_initDataCallback')) {
+        z = a[i].innerText;
+      }
+    }
+    let matches;
+    const regex = /https:\/\/[a-zA-Z0-9-_./]+/;
+    const allMatches = [];
+    let check = true;
+    while (check) {
+      matches = regex.exec(z);
+      if (matches) {
+        allMatches.push(matches[0]);
+        z = z.replace(matches[0], '');
+      } else {
+        check = false;
+      }
+    }
+    const finalImages = allMatches.filter(
+      (item) => item !== 'https://encrypted-tbn0.gstatic.com/images'
+    );
+    return finalImages;
   }
 }

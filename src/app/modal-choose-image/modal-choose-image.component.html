@@ -11,6 +11,7 @@
           name="type"
           #input
           checked
+          (change)="onChangeType(1)"
           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-orange-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-orange-gray-500 before:opacity-0 before:transition-opacity checked:border-orange-500 checked:bg-orange-500 checked:before:bg-orange-500 hover:before:opacity-10"
           id="checkbox"
         />
@@ -44,6 +45,7 @@
         <input
           type="radio"
           #input
+          (change)="onChangeType(2)"
           name="type"
           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-orange-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-orange-gray-500 before:opacity-0 before:transition-opacity checked:border-orange-500 checked:bg-orange-500 checked:before:bg-orange-500 hover:before:opacity-10"
           id="checkbox"
@@ -78,6 +80,7 @@
         <input
           type="radio"
           name="type"
+          (change)="onChangeType(3)"
           #input
           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-orange-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-orange-gray-500 before:opacity-0 before:transition-opacity checked:border-orange-500 checked:bg-orange-500 checked:before:bg-orange-500 hover:before:opacity-10"
           id="checkbox"
@@ -104,136 +107,16 @@
       GIF
     </div>
   </div>
-  <div class="grid grid-cols-4 gap-3 max-h-full overflow-scroll">
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
-    <img
-      src="https://cc.sj-cdn.net/instructor/2umo5x5vzy356-tomorrowio/courses/3uvqfws6nhtgn/promo-image.1649781712.png"
-      class="w-full h-full object-cover"
-      alt=""
-    />
+  <div class="grid grid-cols-4 gap-3 max-h-full overflow-auto">
+    <ng-container *ngFor="let item of data">
+      <img
+        (error)="handleErrorImage($event)"
+        loading="eager"
+        [src]="item"
+        (dblclick)="handleDoubleClick(item)"
+        class="w-full h-full object-contain cursor-pointer active:opacity-80"
+        alt="Double click to choose this image"
+      />
+    </ng-container>
   </div>
 </app-modal>
