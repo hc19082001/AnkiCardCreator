@@ -4,11 +4,12 @@
       *ngFor="let ex of examples; let i = index"
       #example
       class="p-5 hover:bg-slate-200 block hover:cursor-pointer mb-2 rounded"
-      (click)="exampleClick(ex.en, $event)"
+      (click)="exampleClick(ex?.en, $event)"
     >
-      {{ i + 1 }}. {{ ex.en }} ({{ ex.vi }})
+      {{ i + 1 }}. {{ ex?.en }} ({{ ex?.vi }})
     </li>
   </ul>
+
   <div class="flex justify-center">
     <div
       class="w-full p-1 border border-solid border-slate-400 rounded-md flex justify-center items-center bg-white mb-3"
