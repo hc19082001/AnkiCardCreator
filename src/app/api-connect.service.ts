@@ -330,7 +330,7 @@ export class ApiConnectService {
     msbing!.innerHTML = textData;
     const a: any = msbing!.querySelectorAll('script[nonce]');
     let z = '';
-    for (let i = 70; i < a.length; i++) {
+    for (let i = 0; i < a.length; i++) {
       if (a[i].innerText.startsWith('AF_initDataCallback')) {
         z = a[i].innerText;
       }

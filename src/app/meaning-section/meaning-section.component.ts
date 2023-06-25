@@ -1,4 +1,4 @@
-import { Component, ViewChildren, AfterViewInit } from '@angular/core';
+import { Component, ViewChildren, AfterViewInit, Input } from '@angular/core';
 import { Mean, Word } from 'src/data';
 import { ApiConnectService } from '../api-connect.service';
 import { Observable, interval, map, from } from 'rxjs';
@@ -10,6 +10,7 @@ import { Observable, interval, map, from } from 'rxjs';
 })
 export class MeaningSectionComponent {
   // Meaning properties
+  @Input() wordNeedToLookUp = '';
   data: Mean = { ipa: '', defs: [] };
   allOfPos: number[] = [];
   currentWord: { type: number; vi: string[]; en: string[] } = {
@@ -27,22 +28,50 @@ export class MeaningSectionComponent {
 
   constructor(private api: ApiConnectService) {}
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.'
-    from(this.api.getMeanOfWord('tomorrow')).subscribe((data) => {
-      this.data = data;
-      this.allOfPos = data.defs.map((word) => word.type);
-      this.currentWord = data.defs[0];
-
-      this.posbtns._results[0]?.nativeElement.classList.remove(
-        'bg-transparent'
-      );
-      this.posbtns._results[0]?.nativeElement.classList.add(
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    this.currentWord = { type: 0, vi: [], en: [] };
+    this.posbtns._results.forEach((btn: any) => {
+      btn.nativeElement.classList.add('bg-transparent');
+      btn.nativeElement.classList.remove(
         'text-white',
         'bg-slate-500',
         '-translate-y-3'
       );
+    });
+    from(this.api.getMeanOfWord(this.wordNeedToLookUp)).subscribe((data) => {
+      this.data = data;
+      this.allOfPos = data.defs.map((word) => word.type);
+      // this.currentWord = data.defs[0];
+
+      // this.posbtns._results[0]?.nativeElement.classList.remove(
+      //   'bg-transparent'
+      // );
+      // this.posbtns._results[0]?.nativeElement.classList.add(
+      //   'text-white',
+      //   'bg-slate-500',
+      //   '-translate-y-3'
+      // );
+    });
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.'
+    from(this.api.getMeanOfWord(this.wordNeedToLookUp)).subscribe((data) => {
+      this.data = data;
+      this.allOfPos = data.defs.map((word) => word.type);
+      // this.currentWord = data.defs[0];
+
+      // this.posbtns._results[0]?.nativeElement.classList.remove(
+      //   'bg-transparent'
+      // );
+      // this.posbtns._results[0]?.nativeElement.classList.add(
+      //   'text-white',
+      //   'bg-slate-500',
+      //   '-translate-y-3'
+      // );
     });
     // this.api.getMeanOfWord('fast').then((data) => {
     //   this.data = data;

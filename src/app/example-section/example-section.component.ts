@@ -16,12 +16,12 @@ export class ExampleSectionComponent {
   @ViewChildren('example') example: any;
 
   constructor() {
-    from(fetch('http://localhost:3000/examples/solely')).subscribe(
-      async (res) => {
-        const a = await res.json();
-        this.examples = a;
-      }
-    );
+    // from(fetch('http://localhost:3000/examples/solely')).subscribe(
+    //   async (res) => {
+    //     const a = await res.json();
+    //     this.examples = a;
+    //   }
+    // );
   }
 
   exampleClick(en: string, event: any) {

@@ -8,4 +8,9 @@ import { words2, examples } from 'src/data';
 })
 export class AppComponent {
   title = 'AnkiCardCreator';
+  wordNeedToLookUp = '';
+
+  emitToComponents(event: any) {
+    this.wordNeedToLookUp = event;
+  }
 }

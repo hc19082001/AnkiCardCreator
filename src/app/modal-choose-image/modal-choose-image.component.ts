@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiConnectService } from '../api-connect.service';
 import { from } from 'rxjs';
 
@@ -10,19 +10,34 @@ import { from } from 'rxjs';
 export class ModalChooseImageComponent {
   @Output() close = new EventEmitter<void>();
   @Output() choose = new EventEmitter<string>();
+
+  @Input() wordNeedToLookUp = '';
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    from(this.api.getImage(this.wordNeedToLookUp, this.type)).subscribe(
+      (data) => {
+        this.data = data;
+      }
+    );
+  }
   type: number = 1;
   data: string[] = [];
   constructor(private api: ApiConnectService) {
-    from(this.api.getImage('member', this.type)).subscribe((data) => {
-      this.data = data;
-    });
+    from(this.api.getImage(this.wordNeedToLookUp, this.type)).subscribe(
+      (data) => {
+        this.data = data;
+      }
+    );
   }
   onChangeType(type: number) {
     this.type = type;
     this.data = [];
-    from(this.api.getImage('develop', this.type)).subscribe((data) => {
-      this.data = data;
-    });
+    from(this.api.getImage(this.wordNeedToLookUp, this.type)).subscribe(
+      (data) => {
+        this.data = data;
+      }
+    );
   }
   ngOnInit(): void {
     document.body.style.overflow = 'hidden';

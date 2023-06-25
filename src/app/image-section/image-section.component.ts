@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-image-section',
@@ -10,6 +10,7 @@ export class ImageSectionComponent {
   @ViewChild('img') img: any;
 
   imageUrl: string = '';
+  @Input() wordNeedToLookUp: string = '';
 
   isOpenChooseAnotherImagePopUp: boolean = false;
 

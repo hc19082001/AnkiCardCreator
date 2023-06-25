@@ -14,12 +14,18 @@
 <!-- Virtual DOM for microsoft-bing image get -->
 <div id="mc-imgs" style="display: none"></div>
 <!--  -->
-<app-search></app-search>
+<app-search (searchWordEvent)="emitToComponents($event)"></app-search>
 <div>
   <app-tabs-menu></app-tabs-menu>
-  <app-image-section></app-image-section>
-  <app-meaning-section></app-meaning-section>
+  <app-image-section [wordNeedToLookUp]="wordNeedToLookUp"></app-image-section>
+  <app-meaning-section
+    [wordNeedToLookUp]="wordNeedToLookUp"
+  ></app-meaning-section>
   <app-example-section></app-example-section>
-  <app-synonym-section></app-synonym-section>
-  <app-word-family-section></app-word-family-section>
+  <app-synonym-section
+    [wordNeedToLookUp]="wordNeedToLookUp"
+  ></app-synonym-section>
+  <app-word-family-section
+    [wordNeedToLookUp]="wordNeedToLookUp"
+  ></app-word-family-section>
 </div>

@@ -33,6 +33,7 @@
 
   <ng-container *ngIf="isOpenChooseAnotherImagePopUp">
     <app-modal-choose-image
+      [wordNeedToLookUp]="wordNeedToLookUp"
       (close)="handleCloseModalChooseImage()"
       (choose)="handleChooseImage($event)"
     ></app-modal-choose-image>
