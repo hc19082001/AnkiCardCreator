@@ -10,17 +10,17 @@
           font-size: 19px;
         "
       >
-        Offer
+        {{ fullWord.front }}
       </h1>
       <hr />
-      <span style="font-family: 'Arial'; font-size: 19px; margin-right: 20px"
-        >/Offer/</span
-      >
+      <span style="font-family: 'Arial'; font-size: 19px; margin-right: 20px">{{
+        fullWord.ipa
+      }}</span>
 
       <hr />
 
       <h1 style="font-family: 'Arial'; font-size: 19px; color: #f81d54">
-        (v) Đề nghị
+        {{ fullWord.back }}
       </h1>
 
       <hr />
@@ -28,7 +28,11 @@
       <div class="text-center">
         <img
           class="max-w-[300px] inline-block"
-          src="https://vapa.vn/wp-content/uploads/2022/12/anh-canh-dep-001-1.jpg"
+          [src]="
+            fullWord.imageUrl
+              ? fullWord.imageUrl
+              : '../../assets/images/error.jpg'
+          "
           alt=""
         />
       </div>
@@ -38,7 +42,7 @@
         <div
           style="
             font-family: 'Arial';
-            font-size: 20px;
+            font-size: 19px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -48,9 +52,10 @@
             style="width: 40px"
             src="https://icon-library.com/images/equal-icon/equal-icon-7.jpg"
           />
-          <span id="synonym" style="margin-left: 10px; color: #c02929"
-            >asdad, asdadasd, asdasdad, asdasdasd, asdqaw, asdas, asdas, asdas,
-            asdas, asdas, asdas</span
+          <span
+            id="synonym"
+            style="margin-left: 10px; color: #c02929; font-size: 15px"
+            >{{ fullWord.synonyms }}</span
           >
         </div>
       </div>
@@ -60,7 +65,7 @@
         <div
           style="
             font-family: 'Tahoma';
-            font-size: 20px;
+            font-size: 19px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -70,11 +75,14 @@
             style="width: 50px"
             src="https://quizizz.com/media/resource/gs/quizizz-media/quizzes/8f899e39-9177-43cb-b150-e32c7dd61e14"
           />
-          <span style="margin-left: 20px; word-break: break-word">
-            <p style="text-align: left; color: #c02929" id="fml-word">
-              asdads (n) asdadasdsa. sdadasda (v) asdadasd. asdadasd (adj)
-              sadasdsaasd. sdadasda (v) asdadasd. asdadasd (adj) sadasdsaasd.
-              sdadasda (v) asdadasd. asdadasd (adj) sadasdsaasd
+          <span
+            style="margin-left: 20px; word-break: break-word; font-size: 15px"
+          >
+            <p
+              style="text-align: left; color: #c02929; font-size: 15px"
+              id="fml-word"
+            >
+              {{ exp }}
             </p>
           </span>
         </div>
@@ -85,7 +93,7 @@
       <div
         style="
           font-family: 'Tahoma';
-          font-size: 20px;
+          font-size: 19px;
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -100,8 +108,10 @@
           "
           src="https://i.pinimg.com/564x/28/f1/5a/28f15a54c83e65e70f2592f3014b7689.jpg"
         />
-        <span style="word-break: break-word">
-          <p style="text-align: left">Ví dụ</p>
+        <span style="word-break: break-word; font-size: 15px">
+          <p style="text-align: left; font-size: 15px">
+            {{ fullWord.example }}
+          </p>
         </span>
       </div>
     </div>

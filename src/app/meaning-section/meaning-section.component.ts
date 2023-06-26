@@ -43,6 +43,7 @@ export class MeaningSectionComponent {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
     this.currentWord = { type: 0, vi: [], en: [] };
+
     this.posbtns._results.forEach((btn: any) => {
       btn.nativeElement.classList.add('bg-transparent');
       btn.nativeElement.classList.remove(
@@ -65,6 +66,9 @@ export class MeaningSectionComponent {
       //   'bg-slate-500',
       //   '-translate-y-3'
       // );
+    });
+    from(this.api.getSound(this.wordNeedToLookUp)).subscribe((data) => {
+      this.anki.setAudioUrl(data);
     });
   }
 

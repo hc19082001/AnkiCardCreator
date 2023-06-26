@@ -353,4 +353,17 @@ export class ApiConnectService {
     );
     return finalImages;
   }
+
+  //~ SOUND
+  async getSound(word: string) {
+    const exs = await fetch(
+      `https://dict.laban.vn/ajax/getsound?accent=us&word=${word}`
+    );
+    const data = await exs.json();
+    if (data.data !== '') {
+      return data.data;
+    } else {
+      return `http://tratu.coviet.vn/sounds/en/${word[0]}/${word}.mp3`;
+    }
+  }
 }

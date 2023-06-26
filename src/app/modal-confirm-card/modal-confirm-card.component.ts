@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FullWord } from 'src/data';
+import { AnkiManipulationService } from '../anki-manipulation.service';
 
 @Component({
   selector: 'app-modal-confirm-card',
@@ -7,7 +9,22 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ModalConfirmCardComponent {
   @Output() close = new EventEmitter<void>();
+  fullWord: FullWord = {
+    audioUrl: '',
+    imageUrl: '',
+    back: '',
+    front: '',
+    engDef: '',
+    example: '',
+    ipa: '',
+    synonyms: '',
+    wf: '',
+  };
+  exp: string = '';
   ngOnInit(): void {
     document.body.style.overflow = 'hidden';
+    this.fullWord = this.anki.getWord();
+    this.exp = this.fullWord.wf.replaceAll('<br>', '\n');
   }
+  constructor(private anki: AnkiManipulationService) {}
 }
