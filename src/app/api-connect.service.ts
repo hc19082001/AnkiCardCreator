@@ -241,7 +241,7 @@ export class ApiConnectService {
     if (a.length > 0) {
       a.forEach((item) => {
         const text = item.querySelector('span')!.innerText.trim();
-        finalSynonyms.push(text);
+        finalSynonyms.push(text.trim());
       });
       console.log(finalSynonyms.join(', ').split(', '));
       return finalSynonyms.join(', ').split(', ');

@@ -3,6 +3,18 @@ export interface Mean {
   defs: Word[];
 }
 
+export type FullWord = {
+  front: string;
+  back: string;
+  engDef: string;
+  ipa: string;
+  imageUrl: string;
+  audioUrl: string;
+  synonyms: string;
+  wf: string;
+  example: string;
+};
+
 export interface Word {
   type: number;
   en: string[];

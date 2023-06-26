@@ -19,6 +19,7 @@
         class="text-[16px] outline-none text-center flex-grow p-2"
         placeholder="Or your example...."
         [(ngModel)]="finalExample"
+        (ngModelChange)="exampleChange($event)"
       />
     </div>
   </div>

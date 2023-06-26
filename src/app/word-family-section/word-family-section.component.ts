@@ -2,6 +2,7 @@ import { Component, Input, ViewChildren } from '@angular/core';
 import { ApiConnectService } from '../api-connect.service';
 import { word_family } from 'src/data';
 import { from } from 'rxjs';
+import { AnkiManipulationService } from '../anki-manipulation.service';
 @Component({
   selector: 'app-word-family-section',
   templateUrl: './word-family-section.component.html',
@@ -15,7 +16,10 @@ export class WordFamilySectionComponent {
 
   @ViewChildren('wordFamily') wordFamily: any;
 
-  constructor(private api: ApiConnectService) {}
+  constructor(
+    private api: ApiConnectService,
+    private anki: AnkiManipulationService
+  ) {}
 
   ngOnChanges(): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
@@ -36,7 +40,10 @@ export class WordFamilySectionComponent {
   wordFamilyClick(wf: string) {
     this.finalWordFamilyString += wf + '\n';
     this.finalWordFamily.push(wf + '. <br>');
+    this.anki.setWf(this.finalWordFamily.join(''));
     console.log(this.finalWordFamily);
+    console.log(this.finalWordFamilyString);
+    console.log(this.anki.getWord());
   }
   onWordFamilyChange(event: any) {
     this.finalWordFamilyString = event.target.value;
@@ -45,6 +52,8 @@ export class WordFamilySectionComponent {
       .join('. <br>@$%')
       .split('@$%')
       .filter((x: string) => x !== '' && x !== '. <br>');
-    console.log(this.finalWordFamily);
+    console.log(this.finalWordFamilyString);
+    this.anki.setWf(this.finalWordFamily.join(''));
+    console.log(this.anki.getWord());
   }
 }

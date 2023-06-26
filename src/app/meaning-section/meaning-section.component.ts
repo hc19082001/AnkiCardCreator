@@ -2,6 +2,9 @@ import { Component, ViewChildren, AfterViewInit, Input } from '@angular/core';
 import { Mean, Word } from 'src/data';
 import { ApiConnectService } from '../api-connect.service';
 import { Observable, interval, map, from } from 'rxjs';
+import { AnkiManipulationService } from '../anki-manipulation.service';
+import * as e from 'express';
+import { getTypeReverse } from 'src/tools/POSHandle';
 
 @Component({
   selector: 'app-meaning-section',
@@ -22,11 +25,19 @@ export class MeaningSectionComponent {
   finalViMeaning = '';
   finalEnMeaning = '';
 
+  ngDoCheck(): void {
+    //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
+    //Add 'implements DoCheck' to the class.
+  }
+
   @ViewChildren('posbtn') posbtns: any;
   @ViewChildren('pvi') pvi: any;
   @ViewChildren('pen') pen: any;
 
-  constructor(private api: ApiConnectService) {}
+  constructor(
+    private api: ApiConnectService,
+    private anki: AnkiManipulationService
+  ) {}
 
   ngOnChanges(): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
@@ -42,6 +53,7 @@ export class MeaningSectionComponent {
     });
     from(this.api.getMeanOfWord(this.wordNeedToLookUp)).subscribe((data) => {
       this.data = data;
+      this.anki.setIpa(data.ipa);
       this.allOfPos = data.defs.map((word) => word.type);
       // this.currentWord = data.defs[0];
 
@@ -54,6 +66,15 @@ export class MeaningSectionComponent {
       //   '-translate-y-3'
       // );
     });
+  }
+
+  onEnMeaningChange(event: any) {
+    this.anki.setEngDef(event);
+  }
+
+  onViMeaningChange(event: any) {
+    this.anki.setBack(`(${getTypeReverse(this.currentWord.type)}) ${event}`);
+    console.log(this.anki.getWord());
   }
 
   ngOnInit(): void {
@@ -104,6 +125,7 @@ export class MeaningSectionComponent {
       return;
     }
     this.finalEnMeaning = means;
+    this.anki.setEngDef(means);
     event.target.classList.add('bg-slate-500', 'text-white');
     this.pen._results.forEach((p: any) => {
       if (
@@ -122,6 +144,7 @@ export class MeaningSectionComponent {
       return;
     }
     this.finalViMeaning = means;
+    this.anki.setBack(`(${getTypeReverse(this.currentWord.type)}) ${means}`);
     event.target.classList.add('bg-slate-500', 'text-white');
     this.pvi._results.forEach((p: any) => {
       if (

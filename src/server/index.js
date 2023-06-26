@@ -2,7 +2,7 @@ const express = require("express");
 const fw = require("./words.json");
 const app = express();
 const { Configuration, OpenAIApi } = require("openai");
-const CHATGPT_API_KEY = "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";
+const CHATGPT_API_KEY = "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";
 
 const configuration = new Configuration({
   apiKey: CHATGPT_API_KEY,
@@ -25,7 +25,7 @@ app.get("/wordFamily/:word", async (req, res) => {
   const lerrterRelativeArr = fw.filter((lt) => lt.letter === w[0]);
   const wordFamilyFilter1 = lerrterRelativeArr[0].listWord.filter((wordObj) => {
     return wordObj.headerWord.includes(
-      w.slice(0, (word.length / 2 + 1).toFixed(0))
+      w.slice(0, (word.length / 2).toFixed(0))
     );
   });
 

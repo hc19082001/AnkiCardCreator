@@ -1,7 +1,7 @@
-import { Component, ViewChildren } from '@angular/core';
-import { async } from '@angular/core/testing';
+import { Component, Input, ViewChildren } from '@angular/core';
 import { from } from 'rxjs';
 import { examples } from 'src/data';
+import { AnkiManipulationService } from '../anki-manipulation.service';
 
 @Component({
   selector: 'app-example-section',
@@ -10,29 +10,36 @@ import { examples } from 'src/data';
 })
 export class ExampleSectionComponent {
   // Example properties
+  @Input() wordNeedToLookUp: string = '';
   examples: any = [];
   finalExample = '';
 
   @ViewChildren('example') example: any;
 
-  constructor() {
-    // from(fetch('http://localhost:3000/examples/solely')).subscribe(
-    //   async (res) => {
-    //     const a = await res.json();
-    //     this.examples = a;
-    //   }
-    // );
+  constructor(private anki: AnkiManipulationService) {}
+
+  ngOnChanges() {
+    from(
+      fetch(`http://localhost:3000/examples/${this.wordNeedToLookUp}`)
+    ).subscribe(async (res) => {
+      const a = await res.json();
+      this.examples = a;
+    });
+  }
+
+  exampleChange(e: any) {
+    this.anki.setExample(e);
   }
 
   exampleClick(en: string, event: any) {
     if (this.finalExample === en) {
       this.finalExample = '';
       event.target.classList.remove('bg-slate-500', 'text-white');
-      console.log(this.finalExample);
       return;
     }
     this.finalExample = en;
-    console.log(this.finalExample);
+    this.anki.setExample(this.finalExample);
+
     this.example._results.forEach((li: any) => {
       if (
         !li.nativeElement.contains(event.target) &&
