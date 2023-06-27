@@ -25,7 +25,7 @@ app.get("/wordFamily/:word", async (req, res) => {
   const lerrterRelativeArr = fw.filter((lt) => lt.letter === w[0]);
   const wordFamilyFilter1 = lerrterRelativeArr[0].listWord.filter((wordObj) => {
     return wordObj.headerWord.includes(
-      w.slice(0, (word.length / 2).toFixed(0))
+      w.slice(0, (word.length / 2 + 1).toFixed(0))
     );
   });
 

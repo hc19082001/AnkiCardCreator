@@ -1,9 +1,8 @@
 import { Component, ViewChildren, AfterViewInit, Input } from '@angular/core';
-import { Mean, Word } from 'src/data';
+import { Mean } from 'src/data';
 import { ApiConnectService } from '../api-connect.service';
-import { Observable, interval, map, from } from 'rxjs';
+import { from } from 'rxjs';
 import { AnkiManipulationService } from '../anki-manipulation.service';
-import * as e from 'express';
 import { getTypeReverse } from 'src/tools/POSHandle';
 
 @Component({
@@ -21,6 +20,7 @@ export class MeaningSectionComponent {
     vi: [],
     en: [],
   };
+  currentType = 0;
 
   finalViMeaning = '';
   finalEnMeaning = '';
@@ -43,6 +43,7 @@ export class MeaningSectionComponent {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
     this.currentWord = { type: 0, vi: [], en: [] };
+    this.currentType = 0;
 
     this.posbtns._results.forEach((btn: any) => {
       btn.nativeElement.classList.add('bg-transparent');
@@ -73,12 +74,15 @@ export class MeaningSectionComponent {
   }
 
   onEnMeaningChange(event: any) {
-    this.anki.setEngDef(event);
+    this.finalEnMeaning = event;
+    this.anki.setEngDef(this.finalEnMeaning);
   }
 
   onViMeaningChange(event: any) {
-    this.anki.setBack(`(${getTypeReverse(this.currentWord.type)}) ${event}`);
-    console.log(this.anki.getWord());
+    this.finalViMeaning = event;
+    this.anki.setBack(
+      `(${getTypeReverse(this.currentType)}) ${this.finalViMeaning}`
+    );
   }
 
   ngOnInit(): void {
@@ -105,7 +109,13 @@ export class MeaningSectionComponent {
 
   onPosBtnClick(type: number, z: any) {
     // Change the current word
+    console.log(type);
+    this.currentType = type;
     this.currentWord = this.data.defs.find((word) => word.type === type)!;
+    this.anki.setBack(
+      `(${getTypeReverse(this.currentType)}) ${this.finalViMeaning}`
+    );
+
     // Reset all buttons to default except the one clicked
     this.posbtns._results.forEach((btn: any) => {
       if (btn.nativeElement.dataset.pos !== type) {
@@ -129,7 +139,7 @@ export class MeaningSectionComponent {
       return;
     }
     this.finalEnMeaning = means;
-    this.anki.setEngDef(means);
+    this.anki.setEngDef(this.finalEnMeaning);
     event.target.classList.add('bg-slate-500', 'text-white');
     this.pen._results.forEach((p: any) => {
       if (
@@ -148,7 +158,9 @@ export class MeaningSectionComponent {
       return;
     }
     this.finalViMeaning = means;
-    this.anki.setBack(`(${getTypeReverse(this.currentWord.type)}) ${means}`);
+    this.anki.setBack(
+      `(${getTypeReverse(this.currentType)}) ${this.finalViMeaning}`
+    );
     event.target.classList.add('bg-slate-500', 'text-white');
     this.pvi._results.forEach((p: any) => {
       if (
