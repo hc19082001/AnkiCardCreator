@@ -5,6 +5,7 @@ import {
   mergeAttributevi,
 } from '../tools/MeansHandle';
 import { getType, getTypeReverse } from 'src/tools/POSHandle';
+import { MERRIAM_WEBSTER_API_KEY } from 'src/data';
 @Injectable({
   providedIn: 'root',
 })
@@ -362,6 +363,27 @@ export class ApiConnectService {
   }
 
   //~ SOUND
+  getSoundMerriamWebster(sub_code: string) {
+    const checkbig = /^(big)/;
+    const checkgg = /^(gg)/;
+    const checknumber = /^[0-9]|[^A-Za-z0-9]/;
+    let subdirectory;
+    checkbig.test(sub_code)
+      ? (subdirectory = 'big')
+      : checkgg.test(sub_code)
+      ? (subdirectory = 'gg')
+      : checknumber.test(sub_code)
+      ? (subdirectory = 'number')
+      : (subdirectory = sub_code[0]);
+    return `https://media.merriam-webster.com/audio/prons/en/us/mp3/${subdirectory}/${sub_code}.mp3?key=${MERRIAM_WEBSTER_API_KEY}`;
+  }
+  async getAlternativeAudio(word: string) {
+    const def = await fetch(
+      `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=${MERRIAM_WEBSTER_API_KEY}`
+    );
+    const data_def = await def.json();
+    return this.getSoundMerriamWebster(data_def[0].hwi.prs[0].sound.audio);
+  }
   async getSound(word: string) {
     const exs = await fetch(
       `https://dict.laban.vn/ajax/getsound?accent=us&word=${word}`
@@ -370,7 +392,9 @@ export class ApiConnectService {
     if (data.data !== '') {
       return data.data;
     } else {
-      return `http://tratu.coviet.vn/sounds/en/${word[0]}/${word}.mp3`;
+      return this.getAlternativeAudio(word);
     }
   }
+
+  // http://tratu.coviet.vn/sounds/en/${word[0]}/${word}.mp3
 }

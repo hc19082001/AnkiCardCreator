@@ -3,6 +3,7 @@ export interface Mean {
   defs: Word[];
 }
 export const ANKI_CONNECT_API = 'http://127.0.0.1:8765';
+export const MERRIAM_WEBSTER_API_KEY = 'f2c66e5c-611f-4d49-9104-a03e5d7e8cc1';
 
 export type FullWord = {
   front: string;
