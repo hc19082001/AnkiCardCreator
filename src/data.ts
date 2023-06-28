@@ -2,6 +2,7 @@ export interface Mean {
   ipa: string;
   defs: Word[];
 }
+export const ANKI_CONNECT_API = 'http://127.0.0.1:8765';
 
 export type FullWord = {
   front: string;

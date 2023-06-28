@@ -243,8 +243,15 @@ export class ApiConnectService {
         const text = item.querySelector('span')!.innerText.trim();
         finalSynonyms.push(text.trim());
       });
-      console.log(finalSynonyms.join(', ').split(', '));
-      return finalSynonyms.join(', ').split(', ');
+      const finalSynonyms2 = finalSynonyms
+        .join(', ')
+        .split(', ')
+        .map((item: any) => item.replace('\n', ''));
+      const finalSynonyms3: string[] = [];
+      finalSynonyms2.forEach((item: any) => {
+        finalSynonyms3.includes(item) || finalSynonyms3.push(item);
+      });
+      return finalSynonyms3;
     } else {
       return [];
     }

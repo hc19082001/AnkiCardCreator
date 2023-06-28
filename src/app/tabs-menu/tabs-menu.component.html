@@ -1,9 +1,7 @@
 <div
-  class="fixed top-0 bottom-0 w-[60px] bg-slate-200 z-10 transition-all duration-500"
-  [class.left-0]="isOpenMenu"
-  [class.left-[-60px]]="!isOpenMenu"
+  class="fixed left-0 top-0 bottom-0 w-[60px] bg-slate-200 z-10 transition-all duration-500"
 >
-  <div
+  <!-- <div
     class="w-[60px] h-[60px] absolute bg-slate-400 flex items-center justify-center left-[110%] top-[5px] rounded cursor-pointer"
     (click)="handleClickMenu()"
   >
@@ -12,7 +10,7 @@
       [class.bx-menu]="!isOpenMenu"
       [class.bx-x]="isOpenMenu"
     ></i>
-  </div>
+  </div> -->
   <div
     class="flex justify-center items-center flex-col px-[8px] py-5 gap-5 absolute bottom-0"
   >
@@ -30,7 +28,7 @@
         alt=""
       />
     </div>
-    <div>
+    <div (click)="showPopUpDeckOptions()">
       <img
         class="rounded cursor-pointer hover:rotate-12 transition-all duration-500"
         src="../../assets/images/cards.png"
@@ -42,4 +40,8 @@
 
 <ng-container *ngIf="isShowReviewFC">
   <app-modal-confirm-card (close)="closePopUp()"></app-modal-confirm-card>
+</ng-container>
+
+<ng-container *ngIf="isShowDeckOptions">
+  <app-modal-choose-deck (close)="closePopUp()"></app-modal-choose-deck>
 </ng-container>

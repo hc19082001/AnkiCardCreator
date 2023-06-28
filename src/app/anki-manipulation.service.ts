@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FullWord, Mean } from '../data';
+import { ANKI_CONNECT_API, FullWord, Mean } from '../data';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +16,7 @@ export class AnkiManipulationService {
     wf: '',
     example: '',
   };
+  deckChoose: string = '';
   constructor() {}
   setFront(front: string) {
     this.data.front = front;
@@ -26,7 +27,6 @@ export class AnkiManipulationService {
   setExample(example: string) {
     this.data.example = example;
   }
-
   setBack(back: string) {
     this.data.back = back;
   }
@@ -47,5 +47,27 @@ export class AnkiManipulationService {
   }
   getWord(): FullWord {
     return this.data;
+  }
+  setDeckChoose(deckName: string) {
+    this.deckChoose = deckName;
+  }
+
+  async invoke(action: string, version = 6, params = {}) {
+    const result = await fetch(ANKI_CONNECT_API, {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': 'http://localhost',
+        'Access-Control-Allow-Headers': '*',
+      },
+      body: JSON.stringify({ action, version, params }),
+    });
+    const data = await result.json();
+    return data;
+  }
+
+  async getAllDecksName() {
+    const data = await this.invoke('deckNames');
+    return data.result;
   }
 }

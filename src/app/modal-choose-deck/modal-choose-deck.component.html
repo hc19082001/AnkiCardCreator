@@ -1,0 +1,15 @@
+<app-modal title="SETTING DECK" (close)="close.emit()">
+  <div class="flex flex-col gap-3 max-w-full overflow-auto">
+    <ng-container *ngFor="let item of data">
+      <div
+        #deck
+        class="p-3 border-2 text-center border-amber-400 border-solid cursor-pointer hover:font-semibold transition-all duration-100"
+        [class.bg-amber-500]="deckChoose === item"
+        [class.font-semibold]="deckChoose === item"
+        (click)="onSelectDeck(item, $event)"
+      >
+        <p>{{ item }}</p>
+      </div>
+    </ng-container>
+  </div>
+</app-modal>

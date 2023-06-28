@@ -41,9 +41,6 @@ export class WordFamilySectionComponent {
     this.finalWordFamilyString += wf + '\n';
     this.finalWordFamily.push(wf + '. <br>');
     this.anki.setWf(this.finalWordFamily.join(''));
-    console.log(this.finalWordFamily);
-    console.log(this.finalWordFamilyString);
-    console.log(this.anki.getWord());
   }
   onWordFamilyChange(event: any) {
     this.finalWordFamilyString = event.target.value;
@@ -52,8 +49,6 @@ export class WordFamilySectionComponent {
       .join('. <br>@$%')
       .split('@$%')
       .filter((x: string) => x !== '' && x !== '. <br>');
-    console.log(this.finalWordFamilyString);
     this.anki.setWf(this.finalWordFamily.join(''));
-    console.log(this.anki.getWord());
   }
 }

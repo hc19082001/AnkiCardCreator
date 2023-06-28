@@ -27,12 +27,22 @@ export class TabsMenuComponent {
     this.isShowReviewFC = true;
   }
 
+  showPopUpDeckOptions() {
+    this.isShowDeckOptions = true;
+  }
+
+  showPopUpTruffleOption() {
+    this.isShowTruffleOption = true;
+  }
+
   handleClickMenu() {
     this.isOpenMenu = !this.isOpenMenu;
   }
 
   closePopUp() {
-    this.isShowReviewFC = false;
+    this.isShowReviewFC && (this.isShowReviewFC = false);
+    this.isShowDeckOptions && (this.isShowDeckOptions = false);
+    this.isShowTruffleOption && (this.isShowTruffleOption = false);
     document.body.style.overflow = 'auto';
   }
 }

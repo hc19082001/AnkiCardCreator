@@ -21,10 +21,14 @@ export class ModalConfirmCardComponent {
     wf: '',
   };
   exp: string = '';
+  textBtn: string = '';
   ngOnInit(): void {
     document.body.style.overflow = 'hidden';
     this.fullWord = this.anki.getWord();
     this.exp = this.fullWord.wf.replaceAll('<br>', '\n');
+    this.textBtn = this.anki.deckChoose
+      ? `Add to [${this.anki.deckChoose}]`
+      : 'PLEASE CHOOSE DECK FIRST';
   }
   constructor(private anki: AnkiManipulationService) {}
 }
