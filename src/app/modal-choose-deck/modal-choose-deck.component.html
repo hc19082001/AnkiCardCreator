@@ -4,7 +4,7 @@
       <div
         #deck
         class="p-3 border-2 text-center border-amber-400 border-solid cursor-pointer hover:font-semibold transition-all duration-100"
-        [class.bg-amber-500]="deckChoose === item"
+        [class.bg-amber-300]="deckChoose === item"
         [class.font-semibold]="deckChoose === item"
         (click)="onSelectDeck(item, $event)"
       >

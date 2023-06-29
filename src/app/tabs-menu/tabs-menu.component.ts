@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AnkiManipulationService } from '../anki-manipulation.service';
 Input;
 
 @Component({
@@ -12,6 +13,8 @@ export class TabsMenuComponent {
   isShowReviewFC: boolean = false;
   isShowDeckOptions: boolean = false;
   isShowTruffleOption: boolean = false;
+
+  constructor(private anki: AnkiManipulationService) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -37,6 +40,12 @@ export class TabsMenuComponent {
 
   handleClickMenu() {
     this.isOpenMenu = !this.isOpenMenu;
+  }
+
+  shuffleCard() {
+    this.anki.createMultiChoicesFields(this.anki.deckChoose).then((data) => {
+      console.log(data);
+    });
   }
 
   closePopUp() {

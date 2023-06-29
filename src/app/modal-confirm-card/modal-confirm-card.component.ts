@@ -30,5 +30,12 @@ export class ModalConfirmCardComponent {
       ? `Add to [${this.anki.deckChoose}]`
       : 'PLEASE CHOOSE DECK FIRST';
   }
-  constructor(private anki: AnkiManipulationService) {}
+  constructor(public anki: AnkiManipulationService) {}
+  handleAddtoDeck() {
+    this.anki
+      .addCard(this.anki.deckChoose, 'Flash Card', this.anki.getWord())
+      .then((data) => {
+        console.log(data);
+      });
+  }
 }

@@ -62,3 +62,23 @@ export const getTypeReverse = (number: number) => {
   }
   return type;
 };
+
+export const getRandomIndexArray = (
+  lengthOfArr: number,
+  numOfIndexToGet: number,
+  ignore: number
+) => {
+  let arrRandomIndex: any = [];
+  for (let index = 0; index < numOfIndexToGet; index++) {
+    if (arrRandomIndex.length === lengthOfArr - 1) {
+      break;
+    } else {
+      let random = Math.floor(Math.random() * lengthOfArr);
+      while (arrRandomIndex.includes(random) || random === ignore) {
+        random = Math.floor(Math.random() * lengthOfArr);
+      }
+      arrRandomIndex.push(random);
+    }
+  }
+  return arrRandomIndex;
+};
