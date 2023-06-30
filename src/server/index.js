@@ -2,7 +2,7 @@ const express = require("express");
 const fw = require("./words.json");
 const app = express();
 const { Configuration, OpenAIApi } = require("openai");
-const CHATGPT_API_KEY = "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";
+const CHATGPT_API_KEY = "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";
 
 const configuration = new Configuration({
   apiKey: CHATGPT_API_KEY,
@@ -59,6 +59,7 @@ app.get("/examples/:word", async (req, res) => {
     ],
   });
   const content = completion.data.choices[0].message.content;
+  console.log(content);
   const examples = content
     .trim()
     .split("\n")

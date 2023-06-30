@@ -134,3 +134,10 @@
     </button>
   </div>
 </app-modal>
+
+<div
+  *ngIf="isLoading"
+  class="fixed top-0 bottom-0 left-0 right-0 bg-black opacity-50 z-[999999] flex justify-center items-center"
+>
+  <img class="w-[600px]" src="../assets/images/loading.gif" alt="" />
+</div>
