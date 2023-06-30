@@ -35,5 +35,8 @@ export class ModalChooseDeckComponent {
         element.nativeElement.classList.remove('bg-amber-500', 'font-semibold');
       }
     });
+    setTimeout(() => {
+      this.close.emit();
+    }, 500);
   }
 }

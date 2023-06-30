@@ -16,6 +16,8 @@ export class SynonymSectionComponent {
   finalSynonyms: string[] = [];
   finalSynonymString: string = '';
 
+  isLoadingData: boolean = true;
+
   constructor(
     private api: ApiConnectService,
     private anki: AnkiManipulationService
@@ -24,17 +26,14 @@ export class SynonymSectionComponent {
   ngOnChanges(): void {
     //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
     //Add '${implements OnChanges}' to the class.
-    from(this.api.getSynonymLacViet(this.wordNeedToLookUp)).subscribe((res) => {
-      this.data = res;
-    });
-  }
-
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    from(this.api.getSynonymLacViet(this.wordNeedToLookUp)).subscribe((res) => {
-      this.data = res;
-    });
+    if (this.wordNeedToLookUp) {
+      from(this.api.getSynonymLacViet(this.wordNeedToLookUp)).subscribe(
+        (res) => {
+          this.data = res;
+          this.isLoadingData = false;
+        }
+      );
+    }
   }
 
   synonymStringChange(synonymString: any) {

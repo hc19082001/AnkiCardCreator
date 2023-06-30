@@ -1,4 +1,9 @@
 <app-section [isWhiteBackground]="true" title="CHOOSE EXPAMPLE">
+  <ng-container *ngIf="isLoadingData">
+    <div class="flex justify-center mb-5">
+      <img class="w-[100px]" src="../../assets/images/loading2.gif" alt="" />
+    </div>
+  </ng-container>
   <ul class="grid grid-cols-2">
     <li
       *ngFor="let ex of examples; let i = index"

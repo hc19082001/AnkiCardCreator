@@ -1,4 +1,10 @@
 <app-section title="CHOOSE MEANINGS">
+  <ng-container *ngIf="isLoadingData">
+    <div class="flex justify-center mb-5">
+      <img class="w-[100px]" src="../../assets/images/loading2.gif" alt="" />
+    </div>
+  </ng-container>
+
   <div class="flex gap-4 mb-4">
     <ng-container
       [ngTemplateOutlet]="typebtn"

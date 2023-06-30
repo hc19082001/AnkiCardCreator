@@ -15,19 +15,23 @@
 <div id="mc-imgs" style="display: none"></div>
 <!--  -->
 <app-search (searchWordEvent)="emitToComponents($event)"></app-search>
-<div>
-  <app-tabs-menu></app-tabs-menu>
-  <app-image-section [wordNeedToLookUp]="wordNeedToLookUp"></app-image-section>
-  <app-meaning-section
-    [wordNeedToLookUp]="wordNeedToLookUp"
-  ></app-meaning-section>
-  <app-example-section
-    [wordNeedToLookUp]="wordNeedToLookUp"
-  ></app-example-section>
-  <app-synonym-section
-    [wordNeedToLookUp]="wordNeedToLookUp"
-  ></app-synonym-section>
-  <app-word-family-section
-    [wordNeedToLookUp]="wordNeedToLookUp"
-  ></app-word-family-section>
-</div>
+<app-tabs-menu></app-tabs-menu>
+<ng-container *ngIf="isShowChooseSection">
+  <div>
+    <app-image-section
+      [wordNeedToLookUp]="wordNeedToLookUp"
+    ></app-image-section>
+    <app-meaning-section
+      [wordNeedToLookUp]="wordNeedToLookUp"
+    ></app-meaning-section>
+    <app-example-section
+      [wordNeedToLookUp]="wordNeedToLookUp"
+    ></app-example-section>
+    <app-synonym-section
+      [wordNeedToLookUp]="wordNeedToLookUp"
+    ></app-synonym-section>
+    <app-word-family-section
+      [wordNeedToLookUp]="wordNeedToLookUp"
+    ></app-word-family-section>
+  </div>
+</ng-container>

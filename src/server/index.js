@@ -2,7 +2,7 @@ const express = require("express");
 const fw = require("./words.json");
 const app = express();
 const { Configuration, OpenAIApi } = require("openai");
-const CHATGPT_API_KEY = "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";
+const CHATGPT_API_KEY = "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";
 
 const configuration = new Configuration({
   apiKey: CHATGPT_API_KEY,
@@ -32,14 +32,20 @@ app.get("/wordFamily/:word", async (req, res) => {
   const finalWF = [];
   wordFamilyFilter1.forEach((wordObj) => {
     wordObj.family.forEach((wordObj2) => {
-      wordObj2 === word || finalWF.push(wordObj2);
+      wordObj2 === word &&
+        finalWF.push(wordObj.family.filter((wor) => wor !== word));
     });
   });
+  // wordFamilyFilter1.forEach((wordObj) => {
+  //   wordObj.family.forEach((wordObj2) => {
+  //     wordObj2 === word || finalWF.push(wordObj2);
+  //   });
+  // });
 
   if (finalWF.length === 0) {
     res.status(400).json({ message: "Not found" });
   } else {
-    res.status(200).json(finalWF);
+    res.status(200).json(finalWF[0]);
   }
 });
 
@@ -53,7 +59,7 @@ app.get("/examples/:word", async (req, res) => {
         content: `Give me 10 english sentences following these rules:
                         1. The sentence must have this word: '${req.params.word}, word '${req.params.word}' must be placed in <b></b> tag, Example: 'I love <b>my parents</b> very much',
                         2. Translate each the sentence to Vietnamese, mush abide by the following structure: [example in english] - [translate in vietnamese]
-                        3. No wrap to new line in a sentence
+                        3. No wrap to new line between [example] and [translate]
                         Example: 'Drinking water can <b>alleviate</b> hunger. - Uống nước có thể giảm đói.'`,
       },
     ],

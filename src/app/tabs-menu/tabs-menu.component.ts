@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AnkiManipulationService } from '../anki-manipulation.service';
+import Swal from 'sweetalert2';
 Input;
 
 @Component({
@@ -43,9 +44,30 @@ export class TabsMenuComponent {
   }
 
   shuffleCard() {
-    this.anki.createMultiChoicesFields(this.anki.deckChoose).then((data) => {
-      console.log(data);
-    });
+    if (!this.anki.deckChoose) {
+      this.isShowDeckOptions = true;
+    } else {
+      Swal.fire({
+        title: 'Are you sure?',
+        icon: 'warning',
+        text: `This act will shuffle all multichoice fields in [${this.anki.deckChoose}]. Do you want to continue ?`,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.anki
+            .createMultiChoicesFields(this.anki.deckChoose)
+            .then((data) => {
+              Swal.fire('Success', 'Truffle fields successfully', 'success');
+            })
+            .catch(() => {
+              Swal.fire('Error', 'Error, Please try again', 'error');
+            });
+        }
+      });
+    }
   }
 
   closePopUp() {

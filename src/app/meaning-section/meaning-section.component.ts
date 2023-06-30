@@ -25,6 +25,8 @@ export class MeaningSectionComponent {
   finalViMeaning = '';
   finalEnMeaning = '';
 
+  isLoadingData: boolean = true;
+
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
@@ -39,9 +41,9 @@ export class MeaningSectionComponent {
     private anki: AnkiManipulationService
   ) {}
 
-  ngOnChanges(): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
     this.currentWord = { type: 0, vi: [], en: [] };
     this.currentType = 0;
 
@@ -53,24 +55,22 @@ export class MeaningSectionComponent {
         '-translate-y-3'
       );
     });
-    from(this.api.getMeanOfWord(this.wordNeedToLookUp)).subscribe((data) => {
-      this.data = data;
-      this.anki.setIpa(data.ipa);
-      this.allOfPos = data.defs.map((word) => word.type);
-      // this.currentWord = data.defs[0];
+  }
 
-      // this.posbtns._results[0]?.nativeElement.classList.remove(
-      //   'bg-transparent'
-      // );
-      // this.posbtns._results[0]?.nativeElement.classList.add(
-      //   'text-white',
-      //   'bg-slate-500',
-      //   '-translate-y-3'
-      // );
-    });
-    from(this.api.getSound(this.wordNeedToLookUp)).subscribe((data) => {
-      this.anki.setAudioUrl(data);
-    });
+  ngOnChanges(): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    if (this.wordNeedToLookUp) {
+      from(this.api.getMeanOfWord(this.wordNeedToLookUp)).subscribe((data) => {
+        this.data = data;
+        this.anki.setIpa(data.ipa);
+        this.allOfPos = data.defs.map((word) => word.type);
+        this.isLoadingData = false;
+      });
+      from(this.api.getSound(this.wordNeedToLookUp)).subscribe((data) => {
+        this.anki.setAudioUrl(data);
+      });
+    }
   }
 
   onEnMeaningChange(event: any) {
@@ -83,28 +83,6 @@ export class MeaningSectionComponent {
     this.anki.setBack(
       `(${getTypeReverse(this.currentType)}) ${this.finalViMeaning}`
     );
-  }
-
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.'
-    from(this.api.getMeanOfWord(this.wordNeedToLookUp)).subscribe((data) => {
-      this.data = data;
-      this.allOfPos = data.defs.map((word) => word.type);
-      // this.currentWord = data.defs[0];
-
-      // this.posbtns._results[0]?.nativeElement.classList.remove(
-      //   'bg-transparent'
-      // );
-      // this.posbtns._results[0]?.nativeElement.classList.add(
-      //   'text-white',
-      //   'bg-slate-500',
-      //   '-translate-y-3'
-      // );
-    });
-    // this.api.getMeanOfWord('fast').then((data) => {
-    //   this.data = data;
-    //   this.currentWord = data.defs[0];
   }
 
   onPosBtnClick(type: number, z: any) {

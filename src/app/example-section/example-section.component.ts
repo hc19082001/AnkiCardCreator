@@ -14,17 +14,22 @@ export class ExampleSectionComponent {
   examples: any = [];
   finalExample = '';
 
+  isLoadingData: boolean = true;
+
   @ViewChildren('example') example: any;
 
   constructor(private anki: AnkiManipulationService) {}
 
   ngOnChanges() {
-    from(
-      fetch(`http://localhost:3000/examples/${this.wordNeedToLookUp}`)
-    ).subscribe(async (res) => {
-      const a = await res.json();
-      this.examples = a;
-    });
+    if (this.wordNeedToLookUp) {
+      from(
+        fetch(`http://localhost:3000/examples/${this.wordNeedToLookUp}`)
+      ).subscribe(async (res) => {
+        const a = await res.json();
+        this.examples = a;
+        this.isLoadingData = false;
+      });
+    }
   }
 
   exampleChange(e: any) {

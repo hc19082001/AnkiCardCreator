@@ -1,4 +1,9 @@
 <app-section [isWhiteBackground]="true" title="CHOOSE WORD-FAMILY">
+  <ng-container *ngIf="isLoadingData">
+    <div class="flex justify-center mb-5">
+      <img class="w-[100px]" src="../../assets/images/loading2.gif" alt="" />
+    </div>
+  </ng-container>
   <ul class="grid grid-cols-2 gap-1">
     <li
       *ngFor="let wf of data; let i = index"

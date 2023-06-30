@@ -1,4 +1,9 @@
 <app-section [isWhiteBackground]="false" title="CHOOSE SYNONYM">
+  <ng-container *ngIf="isLoadingData">
+    <div class="flex justify-center mb-5">
+      <img class="w-[100px]" src="../../assets/images/loading2.gif" alt="" />
+    </div>
+  </ng-container>
   <div class="grid grid-cols-5 mb-5">
     <ng-container *ngFor="let synonym of data">
       <div class="inline-flex items-center">

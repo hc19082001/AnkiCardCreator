@@ -123,15 +123,24 @@
     </div>
   </div>
   <div class="text-center">
-    <button
-      type="button"
-      [disabled]="!anki.deckChoose"
-      (click)="handleAddtoDeck()"
-      [class.cursur-not-allowed]="!anki.deckChoose"
-      class="text-white w-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-[16px] px-5 py-2.5 text-center"
-    >
-      {{ textBtn }}
-    </button>
+    <ng-container *ngIf="anki.deckChoose; else elseTemplate">
+      <button
+        type="button"
+        (click)="handleAddtoDeck()"
+        class="text-white w-full bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-[16px] px-5 py-2.5 text-center"
+      >
+        ADD THIS TO [{{ anki.deckChoose }}]
+      </button>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <button
+        type="button"
+        (click)="isShowDeckOptions = true"
+        class="text-white w-full bg-gradient-to-br from-pink-600 to-red-500 hover:bg-gradient-to-bl focus:ring-2 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-[16px] px-5 py-2.5 text-center"
+      >
+        CHOOSE YOUR DECK FIRST
+      </button>
+    </ng-template>
   </div>
 </app-modal>
 
@@ -141,3 +150,9 @@
 >
   <img class="w-[600px]" src="../assets/images/loading.gif" alt="" />
 </div>
+
+<ng-container *ngIf="isShowDeckOptions">
+  <app-modal-choose-deck
+    (close)="isShowDeckOptions = false"
+  ></app-modal-choose-deck>
+</ng-container>
