@@ -16,7 +16,7 @@
 | **Tự động tìm nghĩa**         | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193521/q1_xuogn0.png) |
 | **Tự động tạo ví dụ**         | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193858/q5_psyhk6.png) |
 | **Tự động tìm từ đồng nghĩa** | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193521/p2_ds02on.png) |
-| **Tự động tìm gia đình từ**   | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688194013/q7_bxlm9x.png) |
+| **Tự động tìm gia đình từ**   | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193521/q4_cmglum.png) |
 
 ### Kiểu phiếu Flash Card
 
