@@ -1,27 +1,28 @@
-# AnkiCardCreator
+# TRÌNH TẠO THẺ ANKI TỰ ĐỘNG- ANKICARD CREATOR
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.5.
+### Chức năng chính
 
-## Development server
+- Tự động tìm nghĩa tiếng Anh (Theo từ điển Cambridge), nghĩa tiếng Việt (Theo từ điển Laban và Soha)
+- Tự động tìm từ đồng nghĩa (nếu có) - Theo từ điển LacViet
+- Tự động tìm gia đình từ (nếu có) - Lấy dữ liệu từ [English Word Families (neocities.org)](https://enroots.neocities.org/)
+- Tự động tạo ra mẫu câu ví dụ - Từ OpenAI ChatGPT
+- Tự động tìm hình ảnh của từ - Theo Google Image
+- Tự động thêm Card vào Anki, lấy thông tin Deck - Addon anki-connect
+- Xáo trộn các trường Multichoice của các thẻ trong 1 Deck
+- **Sử dụng kết hợp với kiểu phiếu "Flash Card"**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+| **Giao diện tìm từ**          | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193521/q3_qwnvax.png) |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Tự động tìm nghĩa**         | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193521/q1_xuogn0.png) |
+| **Tự động tạo ví dụ**         | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193858/q5_psyhk6.png) |
+| **Tự động tìm từ đồng nghĩa** | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688193521/p2_ds02on.png) |
+| **Tự động tìm gia đình từ**   | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688194013/q7_bxlm9x.png) |
 
-## Code scaffolding
+### Kiểu phiếu Flash Card
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+| **Chọn nghĩa**           | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191881/w4_en8hdq.png)                                   |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Viết lại từ**          | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191879/w2_ebbjnc.png)                                   |
+| **Chọn từ đồng nghĩa**   | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191881/w4_en8hdq.png)                                   |
+| **Viết lại word family** | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191879/w5_zfolt2.png)                                   |
+| **Mặt sau**              | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688192527/Screenshot_20230701_131955_AnkiDroid_shbfws.jpg) |
