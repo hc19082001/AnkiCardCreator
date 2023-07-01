@@ -20,7 +20,7 @@
 
 ### Kiểu phiếu Flash Card
 
-| **Chọn nghĩa**           | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191881/w4_en8hdq.png)                                   |
+| **Chọn nghĩa**           | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191881/w1_oqakxc.png)                                   |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Viết lại từ**          | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191879/w2_ebbjnc.png)                                   |
 | **Chọn từ đồng nghĩa**   | ![enter image description here](https://res.cloudinary.com/dekx0bg21/image/upload/v1688191881/w4_en8hdq.png)                                   |
