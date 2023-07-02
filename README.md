@@ -3,6 +3,7 @@
 ### Chức năng chính
 
 - Tự động tìm nghĩa tiếng Anh (Theo từ điển Cambridge), nghĩa tiếng Việt (Theo từ điển Laban và Soha)
+- Tự động lấy IPA và file phát âm MP3 (Lấy từ Laban và MerriamWebster API)
 - Tự động tìm từ đồng nghĩa (nếu có) - Theo từ điển LacViet
 - Tự động tìm gia đình từ (nếu có) - Lấy dữ liệu từ [English Word Families (neocities.org)](https://enroots.neocities.org/)
 - Tự động tạo ra mẫu câu ví dụ - Từ OpenAI ChatGPT
