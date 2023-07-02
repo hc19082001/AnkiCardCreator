@@ -70,6 +70,8 @@ export class MeaningSectionComponent {
       from(this.api.getSound(this.wordNeedToLookUp)).subscribe((data) => {
         this.anki.setAudioUrl(data);
       });
+    } else {
+      this.isLoadingData = false;
     }
   }
 

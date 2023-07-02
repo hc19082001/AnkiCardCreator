@@ -33,6 +33,8 @@ export class SynonymSectionComponent {
           this.isLoadingData = false;
         }
       );
+    } else {
+      this.isLoadingData = false;
     }
   }
 

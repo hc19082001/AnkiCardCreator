@@ -31,6 +31,8 @@ export class WordFamilySectionComponent {
         this.data = res;
         this.isLoadingData = false;
       });
+    } else {
+      this.isLoadingData = false;
     }
   }
 

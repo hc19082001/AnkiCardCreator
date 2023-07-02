@@ -29,6 +29,8 @@ export class ExampleSectionComponent {
         this.examples = a;
         this.isLoadingData = false;
       });
+    } else {
+      this.isLoadingData = false;
     }
   }
 
