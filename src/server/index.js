@@ -2,7 +2,7 @@ const express = require("express");
 const fw = require("./words.json");
 const app = express();
 const { Configuration, OpenAIApi } = require("openai");
-const CHATGPT_API_KEY = "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";
+const CHATGPT_API_KEY = "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";
 
 const configuration = new Configuration({
   apiKey: CHATGPT_API_KEY,
