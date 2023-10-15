@@ -50,7 +50,7 @@ app.get("/wordFamily/:word", async (req, res) => {
 });
 
 app.get("/examples/:word", async (req, res) => {
-  console.log(req.params.word);
+  /*console.log(req.params.word);
   const completion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: [
@@ -75,6 +75,7 @@ app.get("/examples/:word", async (req, res) => {
       vi: item.split(" - ")[1],
     }));
   res.json(examples);
+  */
 });
 
 app.listen(3000, () =>
